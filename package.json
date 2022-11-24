@@ -7,8 +7,8 @@
   "exports": {
     ".": "./src/index.js",
     "./vector": "./src/vector.js",
-    "./2d": "./index-2d.js",
-    "./3d": "./index-3d.js"
+    "./2d": "./src/index-2d.js",
+    "./3d": "./src/index-3d.js"
   },
   "scripts": {
     "test": "node_modules/mocha/bin/mocha.js --colors --require test/mocha.conf.js --recursive --extension .spec.js"
