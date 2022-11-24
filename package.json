@@ -1,0 +1,24 @@
+{
+  "name": "geometry-3d",
+  "version": "0.1.0",
+  "description": "A toolkit for performing geometric operations in three-dimensional space",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha.js --colors --require test/mocha.conf.js --recursive --extension .spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BadIdeaException/geometry-3d.git"
+  },
+  "author": "BadIdeaException",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BadIdeaException/geometry-3d/issues"
+  },
+  "homepage": "https://github.com/BadIdeaException/geometry-3d#readme",
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.1.0"
+  }
+}
