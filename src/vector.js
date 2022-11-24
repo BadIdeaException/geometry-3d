@@ -1,3 +1,11 @@
+/**
+ * A vector in an arbitrary number of dimensions, most typically in 2-space or 3-space. 
+ * @typedef {number[]} Vector
+ */
+
+/**
+ * The origin vector: `[0,0,0]`.
+ */
 export const ZERO = [ 0, 0, 0 ];
 
 /**

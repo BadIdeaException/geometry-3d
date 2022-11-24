@@ -9,8 +9,8 @@ import * as Vector from './vector.js';
  * If the triangle is co-planar with the cut plane, it will be returned in both `above` and `below`.
  * @param  {Vector[]} tri 		The triangle to cut.
  * @param  {Vector} normal 		The normal vector of the cut plane.
- * @param  {Number} distance    The distance of the cut plane from the origin.
- * @param  {Number} [epsilon]	The tolerance to use in floating point comparisons. Any vertex closer than `epsilon`
+ * @param  {number} distance    The distance of the cut plane from the origin.
+ * @param  {number} [epsilon]	The tolerance to use in floating point comparisons. Any vertex closer than `epsilon`
  * to the cut plane will be considered on the cut plane. Default is 1.0e-8.
  * @return {Object}           An object containing two arrays of Vertices making up the results of the cut: those
  * one the greater-than-or-equal side of the cut plane (`above`), and those on the less-than-or-equal side (`below`). 

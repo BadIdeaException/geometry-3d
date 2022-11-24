@@ -25,6 +25,7 @@
   "homepage": "https://github.com/BadIdeaException/geometry-3d#readme",
   "devDependencies": {
     "chai": "^4.3.7",
+    "documentation": "^14.0.0",
     "eslint": "^8.28.0",
     "eslint-plugin-chai-expect": "^3.0.0",
     "eslint-plugin-mocha": "^10.1.0",
