@@ -4,6 +4,12 @@
   "description": "A toolkit for performing geometric operations in three-dimensional space",
   "main": "src/index.js",
   "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "vector": "./src/vector.js",
+    "2d": "./index-2d.js",
+    "3d": "./index-3d.js"
+  },
   "scripts": {
     "test": "node_modules/mocha/bin/mocha.js --colors --require test/mocha.conf.js --recursive --extension .spec.js"
   },
