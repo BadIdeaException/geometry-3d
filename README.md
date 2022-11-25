@@ -6,7 +6,7 @@ This package is a simple toolkit for performing some geometric operations in thr
 
 Several functionalities are exported under different namespaces.
 
-    import * as geom from 'geometry-3d'; // 3D functions directly, 2D functions in geom['2D'], vector functions in geom.Vector
+    import * as geom from 'geometry-3d'; // 3D and 2D functions directly, vector functions in geom.Vector
 
     import * as geom from 'geometry-3d/3d'; // 3D functions directly
 
@@ -25,18 +25,16 @@ Importing from this namespace makes all vector functions available. These are al
 Importing from this namespace makes all functions operating in two dimensions available. Renames:
 
 *   [`contains2D`](#contains2d) is exported as `contains`
-*   [`convertUp`](#convertup) is exported as `convert`
 
 ### `geometry-3d/3d`
 
 Importing from this namespace makes all functions operating in three dimensions available. Renames:
 
 *   [`contains3D`](#contains3d) is exported as `contains`
-*   [`convertDown`](#convertdown) is exported as `convert`
 
 ### `geometry-3d`
 
-This is the default namespace. It imports the same things as the `geometry-3d/3d` namespace. Additionally, it imports everything from `geometry-3d/2d` as `2D`, and everything from `geometry-3d/vector` as `Vector`.
+This is the default namespace. It imports the same things as the `geometry-3d/3d` and the `geometry-3d/2d` namespaces. `contains2D` and `contains3D` are not renamed. Additionally, it imports everything from `geometry-3d/vector` as `Vector`.
 
 ## API
 
@@ -54,26 +52,30 @@ This is the default namespace. It imports the same things as the `geometry-3d/3d
     *   [Parameters](#parameters-3)
 *   [cut](#cut)
     *   [Parameters](#parameters-4)
-*   [normal](#normal)
+*   [fuse](#fuse)
     *   [Parameters](#parameters-5)
-*   [project](#project)
+*   [normal](#normal)
     *   [Parameters](#parameters-6)
+*   [project](#project)
+    *   [Parameters](#parameters-7)
+*   [triangulate](#triangulate)
+    *   [Parameters](#parameters-8)
 *   [Vector](#vector)
 *   [ZERO](#zero)
 *   [add](#add)
-    *   [Parameters](#parameters-7)
-*   [subtract](#subtract)
-    *   [Parameters](#parameters-8)
-*   [scale](#scale)
     *   [Parameters](#parameters-9)
-*   [dot](#dot)
+*   [subtract](#subtract)
     *   [Parameters](#parameters-10)
-*   [cross](#cross)
+*   [scale](#scale)
     *   [Parameters](#parameters-11)
-*   [length](#length)
+*   [dot](#dot)
     *   [Parameters](#parameters-12)
-*   [length2](#length2)
+*   [cross](#cross)
     *   [Parameters](#parameters-13)
+*   [length](#length)
+    *   [Parameters](#parameters-14)
+*   [length2](#length2)
+    *   [Parameters](#parameters-15)
 
 ### contains2D
 
@@ -149,6 +151,18 @@ If the triangle is co-planar with the cut plane, it will be returned in both `ab
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** An object containing two arrays of Vertices making up the results of the cut: those
 one the greater-than-or-equal side of the cut plane (`above`), and those on the less-than-or-equal side (`below`).
 
+### fuse
+
+Fuses any vertices in `vertices` that are closer together than specified by the threshold. Specifically, for any consecutive pair of vertices
+`u` and `v`, if the square of the length of `u - v` is less than `threshold`, `u` will be removed from the result.
+
+#### Parameters
+
+*   `vertices` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[Vector](#vector)>** The list of vertices
+*   `threshold` **\[type]** The **square** of the minimum distance between vertices.
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[Vector](#vector)>** The input with vertices that were close together fused.
+
 ### normal
 
 The normal of the polygon. If the polygon is not planar, it will return the normal of a "best fit" plane
@@ -174,7 +188,21 @@ the projection plane.
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[Vector](#vector)>** The polygon, projected onto the plane.
 
+### triangulate
+
+Breaks the polygon up into triangles.
+
+#### Parameters
+
+*   `polygon` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[Vector](#vector)>** The polygon to break up into triangles.
+
+<!---->
+
+*   Throws **any** If `polygon` has less than three vertices.
+
 ### Vector
+
+A vector in an arbitrary number of dimensions, most typically in 2-space or 3-space.
 
 Type: [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>
 
