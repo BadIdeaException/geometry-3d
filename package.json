@@ -30,5 +30,8 @@
     "eslint-plugin-chai-expect": "^3.0.0",
     "eslint-plugin-mocha": "^10.1.0",
     "mocha": "^10.1.0"
+  },
+  "dependencies": {
+    "earcut": "^2.2.4"
   }
 }
