@@ -35,6 +35,7 @@ describe('contains', function() {
 	describe('contains3D', function() {
 		const z = ([ x, y ]) => 2 * x + 3 * y + 4;
 		const extrude = vertex => [ ...vertex, z(vertex) ];
+		// eslint-disable-next-line mocha/no-setup-in-describe
 		const polygon = vertices.map(extrude);
 		const contains = contains3D;
 
