@@ -7,7 +7,7 @@ describe('exports', function() {
 	const expected2 = [
 		'contains',
 		'dist', 'dist2',
-		'convert',
+		'convertUp', 'convertDown',
 		'triangulate'
 	];
 	const expected3 = [
@@ -16,7 +16,7 @@ describe('exports', function() {
 		'normal',
 		'project',
 		'dist', 'dist2',
-		'convert',
+		'convertUp', 'convertDown',
 		'triangulate'
 	];
 
@@ -28,10 +28,13 @@ describe('exports', function() {
 		expect(Object.keys(three)).to.have.members(expected3);
 	});
 
-	it('should have exports from /3d at root, exports from /2d at "2D" and exports from /vector as "Vector" in the default namespace', function() {
+	it('should have exports from /3d and /2d at root, exports from /vector as "Vector" in the default namespace', function() {
 		expect(Object.keys(all)).to.include.members(expected3);
+		expect(Object.keys(all)).to.include.members(expected2);
 		expect(all).to.have.property('Vector', Vector);
 
-		expect(all).to.have.property('2D', two);
+		expect(all).to.have.property('contains2D', two.contains);
+		expect(all).to.have.property('contains3D', three.contains);
+		expect(all).to.have.property('contains', three.contains);
 	});
 });
