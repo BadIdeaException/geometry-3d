@@ -1,5 +1,6 @@
 import cut from '../src/cut.js';
 import * as Vector from '../src/vector.js';
+import EPSILON from '../src/epsilon.js';
 
 describe('cut', function() {
 	let tri;
@@ -57,8 +58,6 @@ describe('cut', function() {
 	});
 
 	it('should cut the triangle into above and below parts if it intersects the cut plane', function() {			
-		const EPSILON = 1.0e-8;
-
 		const normal = [ 1, 1, 1 ];
 		const offset = 2;
 		let result = cut(tri, normal, offset);
@@ -75,10 +74,10 @@ describe('cut', function() {
 			// Each of them should also be in below
 			expect(result.below).to.contain(isect);
 			// Each of them should be on the cut plane
-			expect(Vector.dot(normal, isect)).to.be.approximately(offset, EPSILON);
+			expect(Vector.dot(normal, isect)).to.be.approximately(offset, EPSILON());
 		});
 
-		result.above.forEach(vertex => expect(Vector.dot(normal, vertex)).to.be.at.least(offset - EPSILON));
-		result.below.forEach(vertex => expect(Vector.dot(normal, vertex)).to.be.at.most(offset + EPSILON));
+		result.above.forEach(vertex => expect(Vector.dot(normal, vertex)).to.be.at.least(offset - EPSILON()));
+		result.below.forEach(vertex => expect(Vector.dot(normal, vertex)).to.be.at.most(offset + EPSILON()));
 	});
 });

@@ -1,5 +1,6 @@
 import * as Vector from './vector.js';
 import normal from './normal.js';
+import EPSILON from './epsilon.js';
 
 /**
  * Checks whether `point` is inside `polygon` according to the even-odd rule. Points on an edge are considered inside.
@@ -54,7 +55,7 @@ export function contains3D(polygon, point) {
 	const n = normal(polygon);
 	const d = Vector.dot(n, polygon[0]);
 
-	if (!Math.abs(Vector.dot(n, point) - d) < EPSILON)
+	if (!Math.abs(Vector.dot(n, point) - d) < EPSILON())
 		return false;
 
 	// Find axis-aligned projection that will result in biggest area, then solve problem in 2D on that projection

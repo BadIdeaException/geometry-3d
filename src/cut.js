@@ -1,4 +1,5 @@
 import * as Vector from './vector.js';
+import EPSILON from './epsilon.js';
 
 /**
  * Cuts the triangle `tri` along the plane defined by `normal` and `distance`. The result is an object containing
@@ -10,12 +11,10 @@ import * as Vector from './vector.js';
  * @param  {Vector[]} tri 		The triangle to cut.
  * @param  {Vector} normal 		The normal vector of the cut plane.
  * @param  {number} distance    The distance of the cut plane from the origin.
- * @param  {number} [epsilon]	The tolerance to use in floating point comparisons. Any vertex closer than `epsilon`
- * to the cut plane will be considered on the cut plane. Default is 1.0e-8.
  * @return {Object}           An object containing two arrays of Vertices making up the results of the cut: those
  * one the greater-than-or-equal side of the cut plane (`above`), and those on the less-than-or-equal side (`below`). 
  */
-export default function cut(tri, normal, distance, epsilon = 1.0e-8) {
+export default function cut(tri, normal, distance) {
 	// Helper function that calculates the intersection point of the line given by P1 and P2 with the
 	// plane given by normal and distance
 	// It is assumed that the line is not parallel to the plane
@@ -26,19 +25,19 @@ export default function cut(tri, normal, distance, epsilon = 1.0e-8) {
 
 	// Calculate the signed distances of the triangle from the cut plane
 	const distances = tri.map(vertex => Vector.dot(normal, vertex) - distance);
-	if (distances.every(d => Math.abs(d) < epsilon)) {
+	if (distances.every(d => Math.abs(d) < EPSILON())) {
 		// The triangle is co-planar with the cut plane. 
 		// Assign it to both above and below.
 		return { above: tri, below: tri };
-	} else if (distances.every(d => d > -epsilon)) {
+	} else if (distances.every(d => d > -EPSILON())) {
 		// The triangle is completely on the greater-or-equal side of the cut plane. 
 		// Assign it to above and an empty polygon to below.
 		return { above: tri, below: [] };				
-	} else if (distances.every(d => d < epsilon)) {
+	} else if (distances.every(d => d < EPSILON())) {
 		// The triangle is completely on the less-than-or-equal side of the cut plane.
 		// Assign it to below and an empty polygon to above.
 		return { above: [], below: tri };				
-	} else if (distances.some(d => d > -epsilon) && distances.some(d => d < epsilon)) {
+	} else if (distances.some(d => d > -EPSILON()) && distances.some(d => d < EPSILON())) {
 		// The triangle crosses the cut plane. 
 
 		// Initialize the lists that will hold vertices above and below the cut plane, resp.
@@ -47,9 +46,9 @@ export default function cut(tri, normal, distance, epsilon = 1.0e-8) {
 		let below = [];
 		let on = null;
 		distances.forEach((d, index) => {
-			if (Math.abs(d) < epsilon)
+			if (Math.abs(d) < EPSILON())
 				on = tri[index];
-			else if (d > epsilon)
+			else if (d > EPSILON())
 				above.push(tri[index]);
 			else 
 				below.push(tri[index]);
