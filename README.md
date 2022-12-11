@@ -52,30 +52,34 @@ This is the default namespace. It imports the same things as the `geometry-3d/3d
     *   [Parameters](#parameters-3)
 *   [cut](#cut)
     *   [Parameters](#parameters-4)
-*   [fuse](#fuse)
+*   [dist](#dist)
     *   [Parameters](#parameters-5)
-*   [normal](#normal)
+*   [dist2](#dist2)
     *   [Parameters](#parameters-6)
-*   [project](#project)
+*   [fuse](#fuse)
     *   [Parameters](#parameters-7)
-*   [triangulate](#triangulate)
+*   [normal](#normal)
     *   [Parameters](#parameters-8)
+*   [project](#project)
+    *   [Parameters](#parameters-9)
+*   [triangulate](#triangulate)
+    *   [Parameters](#parameters-10)
 *   [Vector](#vector)
 *   [ZERO](#zero)
 *   [add](#add)
-    *   [Parameters](#parameters-9)
-*   [subtract](#subtract)
-    *   [Parameters](#parameters-10)
-*   [scale](#scale)
     *   [Parameters](#parameters-11)
-*   [dot](#dot)
+*   [subtract](#subtract)
     *   [Parameters](#parameters-12)
-*   [cross](#cross)
+*   [scale](#scale)
     *   [Parameters](#parameters-13)
-*   [length](#length)
+*   [dot](#dot)
     *   [Parameters](#parameters-14)
-*   [length2](#length2)
+*   [cross](#cross)
     *   [Parameters](#parameters-15)
+*   [length](#length)
+    *   [Parameters](#parameters-16)
+*   [length2](#length2)
+    *   [Parameters](#parameters-17)
 
 ### contains2D
 
@@ -145,11 +149,27 @@ If the triangle is co-planar with the cut plane, it will be returned in both `ab
 *   `tri` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[Vector](#vector)>** The triangle to cut.
 *   `normal` **[Vector](#vector)** The normal vector of the cut plane.
 *   `distance` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** The distance of the cut plane from the origin.
-*   `epsilon` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** The tolerance to use in floating point comparisons. Any vertex closer than `epsilon`
-    to the cut plane will be considered on the cut plane. Default is 1.0e-8. (optional, default `1.0e-8`)
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** An object containing two arrays of Vertices making up the results of the cut: those
 one the greater-than-or-equal side of the cut plane (`above`), and those on the less-than-or-equal side (`below`).
+
+### dist
+
+Returns the distance between points `p` and `q`.
+
+#### Parameters
+
+*   `p` &#x20;
+*   `q` &#x20;
+
+### dist2
+
+Returns the **square** of the distance between points `p` and `q`.
+
+#### Parameters
+
+*   `p` &#x20;
+*   `q` &#x20;
 
 ### fuse
 
