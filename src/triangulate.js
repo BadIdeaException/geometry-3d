@@ -21,9 +21,9 @@ export default function triangulate(polygon) {
 	let triangles = [];
 	for (let i = 0; i < indices.length; i+=3) {
 		let tri = [
-			polygon[i],
-			polygon[i + 1],
-			polygon[i + 2]
+			polygon[indices[i]],
+			polygon[indices[i + 1]],
+			polygon[indices[i + 2]]
 		]
 		triangles.push(tri);
 	}
