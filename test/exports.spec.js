@@ -18,7 +18,6 @@ describe('exports', function() {
 		'project',
 		'dist', 'dist2',
 		'convertUp', 'convertDown',
-		'triangulate',
 		'fuse'
 	];
 

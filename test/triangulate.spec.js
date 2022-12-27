@@ -1,16 +1,18 @@
 import triangulate from '../src/triangulate.js';
 
 describe('triangulate', function() {
-	const z = ([ x, y ]) => 2 * x + 3 * y + 4;
-	const extrude = vertex => [ ...vertex, z(vertex) ];
-	// eslint-disable-next-line mocha/no-setup-in-describe
+
 	const polygon = [
 		[ 1, 1 ],
 		[ 5, 5 ],
 		[ 4, 8 ],
 		[ 0, 5 ],
 		[ 1, 3 ]
-	].map(extrude);
+	];
+
+	it('should throw if polygon vertices are not two-dimensional', function() {
+		expect(triangulate.bind(null, polygon.map(([ x, y ]) => [ x, y, 0 ]))).to.throw(/dimension/);
+	});
 
 	it('should throw if polygon has less than three vertices', function() {
 		for (let length = 0; length < 3; length++) {

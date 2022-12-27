@@ -210,7 +210,7 @@ Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Gl
 
 ### triangulate
 
-Breaks the polygon up into triangles.
+Breaks the two-dimensional polygon up into triangles.
 
 #### Parameters
 
@@ -218,7 +218,7 @@ Breaks the polygon up into triangles.
 
 <!---->
 
-*   Throws **any** If `polygon` has less than three vertices.
+*   Throws **any** If `polygon` has less than three vertices, or is not two-dimensional.
 
 ### Vector
 

@@ -5,4 +5,3 @@ export { default as project } from './project.js';
 export { dist, dist2 } from './dist.js';
 export * from './convert.js';
 export { default as fuse } from './fuse.js';
-export { default as triangulate } from './triangulate.js';
