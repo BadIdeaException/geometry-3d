@@ -11,7 +11,8 @@
     "./3d": "./src/index-3d.js"
   },
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha.js --colors --require test/mocha.conf.js --recursive --extension .spec.js"
+    "test": "node_modules/mocha/bin/mocha.js --colors --require test/mocha.conf.js --recursive --extension .spec.js",
+    "build-docs": "node_modules/documentation/bin/documentation.js readme src/**.js --section=API"
   },
   "repository": {
     "type": "git",
