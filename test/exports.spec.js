@@ -9,7 +9,8 @@ describe('exports', function() {
 		'dist', 'dist2',
 		'convertUp', 'convertDown',
 		'triangulate',
-		'fuse'
+		'fuse',
+		'smooth'
 	];
 	const expected3 = [
 		'contains',
@@ -18,7 +19,8 @@ describe('exports', function() {
 		'project',
 		'dist', 'dist2',
 		'convertUp', 'convertDown',
-		'fuse'
+		'fuse',
+		'smooth'
 	];
 
 	it(`namespace /2d should have exports ${expected2.join(', ')}`, function() {
