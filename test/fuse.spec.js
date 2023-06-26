@@ -14,12 +14,13 @@ describe('fuse', function() {
 	});
 
 	it('should delete any vertex whose successor is less than threshold**2 away', function() {
+		let fixture = vertices.slice(); // Shallow copy
 		// Insert a vertex that has less distance than threshold
-		vertices.splice(1, [
+		fixture.splice(1, 0, [
 			vertices[0][0] + Math.sqrt(THRESHOLD) / 2,
 			vertices[0][1] + Math.sqrt(THRESHOLD) / 2,
 		]);
 		
-		expect(fuse(vertices, THRESHOLD)).to.deep.equal(vertices);
+		expect(fuse(fixture, THRESHOLD)).to.deep.equal(fixture.slice(1));
 	});
 });
