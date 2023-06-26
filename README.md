@@ -62,24 +62,26 @@ This is the default namespace. It imports the same things as the `geometry-3d/3d
     *   [Parameters](#parameters-8)
 *   [project](#project)
     *   [Parameters](#parameters-9)
-*   [triangulate](#triangulate)
+*   [smooth](#smooth)
     *   [Parameters](#parameters-10)
+*   [triangulate](#triangulate)
+    *   [Parameters](#parameters-11)
 *   [Vector](#vector)
 *   [ZERO](#zero)
 *   [add](#add)
-    *   [Parameters](#parameters-11)
-*   [subtract](#subtract)
     *   [Parameters](#parameters-12)
-*   [scale](#scale)
+*   [subtract](#subtract)
     *   [Parameters](#parameters-13)
-*   [dot](#dot)
+*   [scale](#scale)
     *   [Parameters](#parameters-14)
-*   [cross](#cross)
+*   [dot](#dot)
     *   [Parameters](#parameters-15)
-*   [length](#length)
+*   [cross](#cross)
     *   [Parameters](#parameters-16)
-*   [length2](#length2)
+*   [length](#length)
     *   [Parameters](#parameters-17)
+*   [length2](#length2)
+    *   [Parameters](#parameters-18)
 
 ### contains2D
 
@@ -179,7 +181,7 @@ Fuses any vertices in `vertices` that are closer together than specified by the 
 #### Parameters
 
 *   `vertices` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[Vector](#vector)>** The list of vertices
-*   `threshold` **\[type]** The **square** of the minimum distance between vertices.
+*   `threshold` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** The **square** of the minimum distance between vertices.
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[Vector](#vector)>** The input with vertices that were close together fused.
 
@@ -207,6 +209,24 @@ the projection plane.
 *   `axis` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** The axis along which to project. Can be `0` for the x axis, `1` for the y axis, or `2` for the z axis.
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[Vector](#vector)>** The polygon, projected onto the plane.
+
+### smooth
+
+Smoothes `poly` by finding and removing aberrant chains. An aberrant chain is a series of vertices such that the first and the last
+vertex are very close together. After removal, only the start vertex will remain in the result.
+
+To improve efficiency, chain length is capped at `lookahead`. This is number is actually the *maximum* lookahead.
+The actual lookahead may be lower if polygon length is less than `lookahead - 1`. This is necessary because traversing the entire polygon
+will *always* result in an aberrant chain, with the end vertex being the start vertex after a full circumnavigation.
+
+#### Parameters
+
+*   `poly` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[Vector](#vector)>** The polygon from which to remove aberrant chains.
+*   `threshold` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** The **square** of the maximum distance between the start and the end of an aberrant chain. Vertices must
+    be at most the (square root of this) distance apart for the series to be considered aberrant and removed.
+*   `lookahead` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** The maximum number of vertices to look ahead to find a possible end vertex.
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[Vector](#vector)>** The polygon, with aberrant chains removed after their first vertex.
 
 ### triangulate
 
